@@ -9,10 +9,23 @@ import gradio as gr
 
 learn = load_learner('export.pkl')
 
+
 def predict(img):
     img = PILImage.create(img)
-    pred,pred_idx,probs = learn.predict(img)
+    pred, pred_idx, probs = learn.predict(img)
     return {labels[i]: float(probs[i]) for i in range(len(labels))}
 
 
-gr.Interface(fn=predict, inputs=gr.inputs.Image(shape=(512, 512)), outputs=gr.outputs.Label(num_top_classes=3)).launch(share=True)
+interface = gr.Interface(
+    title="Recognize tools",
+    description="This model recognizes tools between drill driver, hammer dill, screwdriver and screwgun.",
+    examples=["example-hammer-drill.jpg",
+              "example-screwgun.jpg",
+              "example-drill-driver.jpg",
+              "example-electric-screwdriver.jpg"],
+    fn=predict,
+    inputs=gr.Image(width=512,height=512),
+    outputs=gr.Label(num_top_classes=3)
+)
+
+interface.launch(share=True)
