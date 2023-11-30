@@ -26,7 +26,9 @@ interface = gr.Interface(
               "example-electric-screwdriver.jpg"],
     fn=predict,
     inputs=gr.Image(width=512,height=512),
-    outputs=gr.Label(num_top_classes=3)
+    outputs=gr.Label(num_top_classes=3),
+    allow_flagging="never",
+    live=True,
 )
 
 interface.launch(share=True)
