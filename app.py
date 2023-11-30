@@ -8,6 +8,7 @@ import gradio as gr
 # iface.launch()
 
 learn = load_learner('export.pkl')
+labels = learn.dls.vocab
 
 
 def predict(img):
