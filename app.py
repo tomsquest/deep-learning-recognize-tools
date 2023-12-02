@@ -20,10 +20,12 @@ def predict(img):
 interface = gr.Interface(
     title="Recognize tools",
     description="This model recognizes tools between drill driver, hammer dill, screwdriver and screwgun.",
-    examples=["example-hammer-drill.jpg",
-              "example-screwgun.jpg",
-              "example-drill-driver.jpg",
-              "example-electric-screwdriver.jpg"],
+    examples=["image-examples/hammer-drill.jpg",
+              "image-examples/screwgun.jpg",
+              "image-examples/drill-driver.jpg",
+              "image-examples/electric-screwdriver.jpg"
+              "image-examples/toy.jpg",
+              "image-examples/gremlin.jpg"],
     fn=predict,
     inputs=gr.Image(width=512,height=512),
     outputs=gr.Label(num_top_classes=3),
