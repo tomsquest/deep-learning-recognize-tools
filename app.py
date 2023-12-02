@@ -7,7 +7,7 @@ import gradio as gr
 # iface = gr.Interface(fn=greet, inputs="text", outputs="text")
 # iface.launch()
 
-learn = load_learner('export.pkl')
+learn = load_learner("export.pkl")
 labels = learn.dls.vocab
 
 
@@ -20,14 +20,16 @@ def predict(img):
 interface = gr.Interface(
     title="Recognize tools",
     description="This model recognizes tools between drill driver, hammer dill, screwdriver and screwgun.",
-    examples=["image-examples/hammer-drill.jpg",
-              "image-examples/screwgun.jpg",
-              "image-examples/drill-driver.jpg",
-              "image-examples/electric-screwdriver.jpg"
-              "image-examples/toy.jpg",
-              "image-examples/gremlin.jpg"],
+    examples=[
+        "image-examples/hammer-drill.jpg",
+        "image-examples/screwgun.jpg",
+        "image-examples/drill-driver.jpg",
+        "image-examples/electric-screwdriver.jpg",
+        "image-examples/toy.jpg",
+        "image-examples/gremlin.jpg",
+    ],
     fn=predict,
-    inputs=gr.Image(width=512,height=512),
+    inputs=gr.Image(width=512, height=512),
     outputs=gr.Label(num_top_classes=3),
     allow_flagging="never",
     live=True,
